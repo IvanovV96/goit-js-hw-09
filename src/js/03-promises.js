@@ -4,15 +4,16 @@ const form = document.querySelector('.form')
 const firstDelay = form.elements.delay
 const step = form.elements.step
 const amount = form.elements.amount
-let pos = 0
+
 
 
 
   
 
 form.addEventListener('submit', (e) => {
-  e.preventDefault()
+  e.preventDefault()  
     let delay = parseInt(firstDelay.value)
+    let pos = 0
    const intervald = setInterval(() => {
     const stepInt = parseInt(step.value)
     pos += 1
@@ -28,12 +29,12 @@ form.addEventListener('submit', (e) => {
       Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`)
     })
    }, delay)
-  
   }
 )
 
 function createPromise(position, delay) {
   const shouldResolve = Math.random() > 0.5;
+
   return new Promise((resolve, reject) => {
      setTimeout(()=> {
       if (shouldResolve) {
