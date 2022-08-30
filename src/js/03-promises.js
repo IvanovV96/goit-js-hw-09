@@ -14,20 +14,22 @@ form.addEventListener('submit', (e) => {
   e.preventDefault()  
     let delay = parseInt(firstDelay.value)
     let pos = 0
-   const intervald = setInterval(() => {
-    const stepInt = parseInt(step.value)
-    pos += 1
-    delay += stepInt
-    if(pos === +amount.value) {
-      clearInterval(intervald)
-    }
-    createPromise(pos, delay)
-    .then(({ position, delay }) => {
-      Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`)
-    })
-    .catch(({ position, delay }) => {
-      Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`)
-    })
+
+    const intervald = setInterval(() => {
+      const stepInt = parseInt(step.value)
+      
+      pos += 1
+      if(pos === +amount.value) {
+        clearInterval(intervald)
+      }
+      createPromise(pos, delay)
+      .then(({ position, delay }) => {
+        Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`)
+      })
+      .catch(({ position, delay }) => {
+        Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`)
+      })
+      delay += stepInt
    }, delay)
   }
 )
