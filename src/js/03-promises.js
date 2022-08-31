@@ -22,7 +22,7 @@ form.addEventListener('submit', (e) => {
       if(pos === +amount.value) {
         clearInterval(intervald)
       }
-      delay+=stepInt
+      
       createPromise(pos, delay)
       .then(({ position, delay }) => {
         Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`)
@@ -30,7 +30,7 @@ form.addEventListener('submit', (e) => {
       .catch(({ position, delay }) => {
         Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`)
       })
-      
+      delay+=stepInt
    }, )
   }
 )
