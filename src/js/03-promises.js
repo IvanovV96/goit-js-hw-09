@@ -17,11 +17,13 @@ form.addEventListener('submit', (e) => {
 
     const intervald = setInterval(() => {
       const stepInt = parseInt(step.value)
-      
+
       pos += 1
       if(pos === +amount.value) {
         clearInterval(intervald)
       }
+      delay+=stepInt
+      console.log(delay)
       createPromise(pos, delay)
       .then(({ position, delay }) => {
         Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`)
@@ -29,8 +31,8 @@ form.addEventListener('submit', (e) => {
       .catch(({ position, delay }) => {
         Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`)
       })
-      delay += stepInt
-   }, delay)
+      
+   }, )
   }
 )
 
@@ -44,7 +46,7 @@ function createPromise(position, delay) {
       } else {
         reject({ position, delay })
       }
-     }, firstDelay.value)
+     }, delay)
     })
   }
 
