@@ -23,7 +23,6 @@ form.addEventListener('submit', (e) => {
         clearInterval(intervald)
       }
       delay+=stepInt
-      console.log(delay)
       createPromise(pos, delay)
       .then(({ position, delay }) => {
         Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`)
